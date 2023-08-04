@@ -25,14 +25,6 @@ Object.defineProperty(person, "adress", {
     enumerable: false,
 })
 
-// person.firstName = 'Jane'
-// person.lastName = 'Smith'
-// person.age = 20
-// person.email = 'mmmooaoaa'
-// person.updateInfo({ firstName: "Jane", age: 32 })
-// person.adress.city = 'Kyiv'
-// console.log(person)
-
 // 2
 
 const product = {
@@ -68,26 +60,6 @@ function deleteNonConfigurable (obj, propName) {
     }
 }
 
-const john = {
-    firstName: "John",
-    lastName: "Doe",
-    age: 30,
-    email: "john.doe@example.com",
-}
-Object.defineProperty(john, 'firstName', {
-    configurable: false
-})
-
-deleteNonConfigurable(john, 'firstName')
-deleteNonConfigurable(john, 'age')
-
-// console.log(john)
-//
-// product.price = 4000
-// product.quantity = 10
-// console.log(product)
-// console.log(getTotalPrice(product))
-
 // 3
 
 const bankAccount = {
@@ -108,36 +80,6 @@ const bankAccount = {
         return (bankAccount1.balance -= sum) && (bankAccount2.balance += sum)
     }
 }
-// console.log(bankAccount.formattedBalance);
-// bankAccount.balance = 2000
-// console.log(bankAccount.formattedBalance);
-
-const myBankAccount = {
-    balance: 1000,
-
-    get formattedBalance() {
-        return `${this.balance}$`
-    },
-
-    set(value) {
-        this.balance = value
-    }
-}
-const someOneBankAccount = {
-    balance: 1000,
-
-    get formattedBalance() {
-        return `${this.balance}$`
-    },
-
-    set(value) {
-        this.balance = value
-    }
-}
-
-// bankAccount.transfer(myBankAccount, someOneBankAccount, 20)
-// console.log(myBankAccount.formattedBalance)
-// console.log(someOneBankAccount.formattedBalance)
 
 // 4
 
@@ -152,26 +94,6 @@ function createImmutableObject (obj) {
         })
     }
 }
-
-const cat = {
-    name: 'Gusya',
-    age: 4,
-    color: {
-        tail: 'white',
-        body: 'peach'
-    },
-    girls: ['greyCat', 'brownCat'],
-    enemies: ['blackCat']
-}
-
-createImmutableObject(cat)
-
-cat.name = 'Cat'
-cat.color.tail = 'black'
-cat.girls[0] = 'alisa'
-cat.girls[1] = 'koshechka'
-
-// console.log(cat)
 
 // 5
 
@@ -193,15 +115,6 @@ function observeObject (obj, callback) {
     })
 }
 
-function propModification(prop, value) {
-    console.log(`Property '${prop}' accessed or modified. New value: ${value}`);
-}
-
-const observedPerson = observeObject(person, propModification);
-observedPerson.firstName = 'dcghd'
-observedPerson.age  = 31
-console.log(person);
-
 // 6
 
 function deepCloneObject (obj) {
@@ -215,21 +128,6 @@ function deepCloneObject (obj) {
     }
     return clone
 }
-
-let room = {
-    number: 25
-};
-let meetup = {
-    title: "Совещание",
-    occupiedBy: [{name: "Иванов"}, {name: "Петров"}],
-    place: room
-};
-
-// const ahuy = deepCloneObject(meetup)
-// ahuy.title = 'Flex'
-// console.log(ahuy)
-// console.log(meetup)
-// console.log(ahuy === meetup)
 
 // 7
 
@@ -251,13 +149,3 @@ const schema = {
     price: (value) => typeof value === 'number' && value > 0,
     category: (value) => ['Electronics', 'Clothing', 'Books'].includes(value),
 };
-
-const laptop = {
-    name: 'Laptop',
-    price: 1200,
-    category: 'Electronics',
-};
-
-// Validate the object against the schema
-const isValid = validateObject(laptop, schema);
-console.log(isValid)
